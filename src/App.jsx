@@ -218,7 +218,7 @@ function App() {
 
       <main className="p-4">
         <h1 className="url-3xl font-semibold">Hello!</h1>
-        <h2 className="url-3xl font-semibold">You can use <a href="https://www.google.com/"></a> for the URL as it will not take anything else than a valid URL</h2>
+        <h2 className="url-3xl font-semibold">You can use <a href="https://www.google.com/">https://www.google.com/</a> for the URL as it will not take anything else than a valid URL</h2>
 
         {showForm && (
           <form
