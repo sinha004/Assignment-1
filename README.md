@@ -91,6 +91,6 @@ src/
 - Add editing capability to existing links.
 - Mobile responsiveness.
 
-## 🧑‍💻 Author
+## Created By
 
-Pulkit Sinha
+-- Pulkit Sinha
