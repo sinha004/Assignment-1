@@ -15,27 +15,6 @@ Built using:
 - Delete any link.
 - Data is saved to local storage so it persists after refresh.
 
-##  Setup Instructions
-
-1. **Clone the repo**
-
-```bash
-git clone https://github.com/your-username/draggable-navbar.git
-cd draggable-navbar
-```
-
-2. **Install dependencies**
-
-```bash
-npm install
-```
-
-3. **Run the app**
-
-```bash
-npm start
-```
-
 ##  How It Works (Workflow)
 
 ### 1. State Management
@@ -83,13 +62,6 @@ src/
 └── components/
     └── LinkComponent.js (optional / not used in final app)
 ```
-
-## Future Improvements
-
-- Drag from dropdown (`Links`) as well.
-- Sync order between `items` and `entries`.
-- Add editing capability to existing links.
-- Mobile responsiveness.
 
 ## Created By
 
