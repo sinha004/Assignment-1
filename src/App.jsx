@@ -1,6 +1,5 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import LinkComponent from "./components/LinkComponent";
 import {
   DndContext,
   closestCenter,
@@ -15,8 +14,6 @@ import {
   verticalListSortingStrategy,
 } from "@dnd-kit/sortable";
 import { CSS } from "@dnd-kit/utilities";
-
-// COMPONENTS ==============================================
 
 const SortableItem = ({ entry, onDelete, index }) => {
   const { attributes, listeners, setNodeRef, transform, transition } =
@@ -41,7 +38,6 @@ const SortableItem = ({ entry, onDelete, index }) => {
           href={entry.url}
           className="flex-grow hover:text-blue-600"
           onClick={(e) => {
-            // Only prevent default if we're dragging
             if (attributes["aria-pressed"]) {
               e.preventDefault();
             }
@@ -114,49 +110,37 @@ const SortableItemDropdown = ({
   );
 };
 
-// MAIN APP COMPONENT ======================================
 function App() {
-  // STATE MANAGEMENT ======================================
   const [showForm, setShowForm] = useState(false);
-
   const [name, setName] = useState("");
-
   const [url, setText] = useState("");
-
   const [showDropdown, setShowDropdown] = useState(false);
-
   const [entries, setEntries] = useState(() => {
     const saved = localStorage.getItem("entries");
     return saved ? JSON.parse(saved) : [];
   });
-
   const [items, setItems] = useState([]);
 
-  // EFFECTS ===============================================
   useEffect(() => {
     localStorage.setItem("entries", JSON.stringify(entries));
   }, [entries]);
 
   useEffect(() => {
-    const baseMenu = [];
-    let updated = [...baseMenu];
-
+    const updated = [];
     if (entries.length > 0 && entries.length < 6) {
       updated.push(...entries.map((entry) => entry.name));
     } else if (entries.length >= 6) {
       updated.push(...entries.slice(0, 5).map((entry) => entry.name));
       updated.push("Links");
     }
-
     setItems(updated);
   }, [entries]);
 
-  // EVENT HANDLERS ========================================
   const handleSubmit = (e) => {
     e.preventDefault();
     const newEntry = {
       name,
-      url: url.startsWith("http") ? url : `https://${url}`, // Ensure valid URL
+      url: url.startsWith("http") ? url : `https://${url}`,
     };
     setEntries((prev) => [...prev, newEntry]);
     setName("");
@@ -165,8 +149,8 @@ function App() {
   };
 
   const onDelete = (index) => {
-    const updatedEntries = entries.filter((_, i) => i !== index);
-    setEntries(updatedEntries);
+    const updated = entries.filter((_, i) => i !== index);
+    setEntries(updated);
   };
 
   const sensors = useSensors(
@@ -184,10 +168,8 @@ function App() {
     }
   };
 
-  // RENDER ================================================
   return (
     <div className="bg-amber-50 min-h-screen">
-      {/* NAVBAR */}
       <nav className="bg-white shadow-md px-6 py-4 flex justify-between items-center">
         <div className="url-xl font-bold url-blue-600">LOGO</div>
 
@@ -199,10 +181,9 @@ function App() {
           <SortableContext items={items} strategy={verticalListSortingStrategy}>
             <ul className="flex gap-6 text-gray-700 font-medium">
               {items.map((item, index) => {
-                // Find the corresponding entry in the entries array
                 const entry = entries.find((entry) => entry.name === item) || {
                   name: item,
-                  url: "#", // Fallback for "Links" item
+                  url: "#",
                 };
 
                 return item === "Links" ? (
@@ -217,7 +198,7 @@ function App() {
                 ) : (
                   <SortableItem
                     key={item}
-                    entry={entry} // Pass the full entry object instead of individual props
+                    entry={entry}
                     index={index}
                     onDelete={onDelete}
                   />
@@ -235,11 +216,9 @@ function App() {
         </button>
       </nav>
 
-      {/* MAIN CONTENT */}
       <main className="p-4">
         <h1 className="url-3xl font-semibold">Hello!</h1>
 
-        {/* ENTRY FORM */}
         {showForm && (
           <form
             onSubmit={handleSubmit}
