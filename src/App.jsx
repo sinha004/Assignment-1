@@ -126,12 +126,6 @@ const App = () => {
   useGSAP(() => {
     const timeline = gsap.timeline();
 
-    timeline.from("nav", {
-      y: -20,
-      opacity: 0,
-      duration: 2,
-      delay: 0.5,
-    });
     timeline.from("nav div", {
       y: -20,
       opacity: 0,
@@ -163,7 +157,7 @@ const App = () => {
       rotate: 360,
       duration: 0.5,
       repeat: -1,
-      delay: 5,
+      delay: 3,
       repeatDelay: 3, // 3s delay + 1s duration = 4s total cycle
       ease: "none",
     });
