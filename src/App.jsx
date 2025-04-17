@@ -126,6 +126,13 @@ const App = () => {
   useGSAP(() => {
     const timeline = gsap.timeline();
 
+    timeline.from("nav", {
+      y: -20,
+      opacity: 0,
+      duration: 1,
+      delay: 0.2,
+    });
+    
     timeline.from("nav div", {
       y: -20,
       opacity: 0,
