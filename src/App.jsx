@@ -127,24 +127,26 @@ const App = () => {
     const timeline = gsap.timeline();
 
     timeline.from("nav", {
-      y: -20,
+      y: -60,
       opacity: 0,
       duration: 1,
       delay: 0.2,
     });
-    
     timeline.from("nav div", {
       y: -20,
       opacity: 0,
       duration: 1,
       delay: 0.2,
     });
-    timeline.from("nav ul", {
-      y: -20,
-      opacity: 0,
-      duration: 1,
-      stagger: 0.5,
-    });
+
+    if (entries.length != 0) {
+      timeline.from("nav ul", {
+        y: -20,
+        opacity: 0,
+        duration: 1,
+        stagger: 0.5,
+      });
+    }
 
     timeline.from("section h1", {
       y: 50,
